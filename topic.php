@@ -4,12 +4,13 @@ if(isset($_GET["id"])){
     $selectPostAndComments = "SELECT node.title, node.publishdate, text.rawtext, "
             . "(SELECT count(nodeid) FROM node WHERE parentid = :id) AS postcount "
             . "FROM node INNER JOIN text ON node.nodeid = text.nodeid "
-            . "WHERE node.nodeid = :id OR node.parentid = :id "
+            . "WHERE (node.nodeid = :id AND node.contenttypeid = 22) OR node.parentid = :id "
             . "ORDER BY node.publishdate ASC";
         $params = array(":id" => $topicId);
         $res = $db->prepare($selectPostAndComments);
         $quary = $res->execute($params);
         $post = $res->fetch(PDO::FETCH_ASSOC);
+        if($post){
 ?>
 <div class="post">
     <h1><?php echo $post["title"] ?></h1>
@@ -41,6 +42,10 @@ if(isset($_GET["id"])){
 </form>
 
 <?php
+        }else{
+            echo "<div class='alert alert-danger' role='alert'>Post with this id does not exist</div>";
+        }
+            
 }
 
 function renderPost($raw){
