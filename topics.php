@@ -10,7 +10,7 @@ $selectPosts = "SELECT nodeid AS post_node, publishdate, title, lastcontent, "
     <h1>TOPIC LIST</h1>
 </div>
 <div class="topics">
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Topic</th>
