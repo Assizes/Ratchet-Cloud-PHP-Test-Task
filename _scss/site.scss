@@ -1,0 +1,57 @@
+.pageWrap{
+    margin: 0 15% 0 15%;
+    padding: 50px;
+    background-color: #fff4df;
+    .post, .commentsWrap .comment{
+        border: 2px solid #000;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    .comment{
+        background-color: bisque;
+    }
+    .post{
+        background-color: aliceblue;
+        margin-bottom: 50px;
+    }
+    #commentForm{
+        margin-top: 40px;
+        textarea:focus{
+            background-color: bisque;
+        }
+        textarea{
+            background-color: floralwhite;
+        }
+        .btn{
+            margin-top: 10px;
+            float: right;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            box-shadow: 2px 3px 2px 0px #003295;
+        }
+        .btn:active{
+            box-shadow: unset;
+            transition: box-shadow 0.2s;
+        }
+    }
+    .topics-header{
+        h1{
+            font-size: 3.5em;
+        }
+    }
+    .topics{
+        margin-top: 25px;
+        th{
+            font-size: 1.5em; 
+        }
+        a{
+            font-size: 0.7em;
+            color: #0056b2;
+        }
+    }
+    .post, .comment{
+        h6{
+            margin-top: 16px;
+        }
+    }
+}
