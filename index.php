@@ -6,6 +6,8 @@
 <?php
     if(isset($_GET["section"])){
         include './'.$_GET["section"].'.php';
+    }else{
+        include './topics.php';
     }
 ?>
     </div>
