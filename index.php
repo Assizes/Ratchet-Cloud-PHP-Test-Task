@@ -1,5 +1,5 @@
 <?php
-    include './Header.html';
+    include './Header.php';
     include './connect.php';
 ?>
     <div class="pageWrap">
