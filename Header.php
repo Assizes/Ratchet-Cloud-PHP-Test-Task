@@ -23,11 +23,12 @@
                     </li>
                  </ul>
                 <?php if(isset($_SESSION['siteUsername']) && !empty($_SESSION['siteUsername'])){ ?>
-                    <span class="userName"><?php echo $_SESSION['siteUsername']; ?></span>
-                    <button id="signOut" class="btn btn-outline-success my-2 my-sm-0">Sigh Out</button>
+                    <span class="userName"> <?php echo $_SESSION['siteUsername']; ?></span>
+                    <a href="logOff.php"><button id="logOut" class="btn btn-outline-success my-2 my-sm-0">Log Out</button></a>
                 <?php } else { ?>
-                    <?php echo $_SESSION['siteUsername']; ?>
+                    <span class="userName"></span>
                     <button id="signIn" class="btn btn-outline-success my-2 my-sm-0">Sigh In</button>
+                    <a href="logOff.php"><button id="logOut" class="btn btn-outline-success my-2 my-sm-0 hidden">Log Out</button></a>
                 <?php } ?>
             </div>
         </nav>
@@ -38,12 +39,12 @@
             <form id="loginForm" action="loginUser.php">
                 <div class="">
                     <label>Username:<sup>*</sup></label>
-                    <input type="text" name="username"class="form-control" value="">
+                    <input id="logUserName" type="text" name="username"class="form-control" value="">
                     <span class="help-block"></span>
                 </div>    
                 <div class="">
                     <label>Password:<sup>*</sup></label>
-                    <input type="password" name="password" class="form-control">
+                    <input id="logPass" type="password" name="password" class="form-control">
                     <span class="help-block"></span>
                 </div>
                 <div class="form-group">

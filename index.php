@@ -1,4 +1,5 @@
 <?php
+    $pepper = "The quick brown fox jumps over the lazy dog";
     include './Header.php';
     include './connect.php';
 ?>

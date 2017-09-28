@@ -1,14 +1,14 @@
 <?php
 if(isset($_POST["userName"]) && isset($_POST["pass"])){
     include './connect.php';
-    
-    $pepper = "The quick brown fox jumps over the lazy dog";
+
+    global $pepper;
     $userName = $_POST["userName"];
     $pass = $_POST["pass"];
     $time = time();
-    $errors = [];
+    $response = [];
     
-    $cookedPass = $time.$userName.$pepper;
+    $cookedPass = $time.$pass.$pepper;
     $passHash = password_hash($cookedPass, PASSWORD_DEFAULT);
     
     try{
@@ -23,21 +23,19 @@ if(isset($_POST["userName"]) && isset($_POST["pass"])){
         $db->commit();
         
         if (!$quary){
-            echo "\nPDO::errorInfo():\n";
-            $errors["query"]=$db->errorInfo();
+            $response['errors']["query"]=$db->errorInfo();
         }else{
             session_start();
             $_SESSION['siteUsername'] = $userName;
-            $errors["session"] = $_SESSION['siteUsername'];
         }
         
         
     }catch (PDOException $e) {
         $db->rollBack();
-        $errors["transaction"] = $e->getMessage();
+        $response['errors']["transaction"] = $e->getMessage();
         //die($e->getMessage());
     }
     
-    echo json_encode($errors);
+    echo json_encode($response);
 }
 ?>

@@ -2,6 +2,10 @@
     position: fixed;
     width: 100%;
     z-index: 100;
+    .userName{
+        margin-right: 20px;
+        font-size: 18px;
+    }
 }
 #loginModal{
     position: fixed;
