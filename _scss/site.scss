@@ -52,6 +52,13 @@
         padding: 10px;
         margin-top: 10px;
     }
+    .editPost{
+        color: #00f;
+        cursor: pointer;
+    }
+    .editPost:hover{
+        text-decoration: underline;
+    }
     .comment{
         background-color: bisque;
     }

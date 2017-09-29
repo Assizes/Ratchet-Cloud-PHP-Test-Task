@@ -19,13 +19,14 @@ if(isset($_POST["userName"]) && isset($_POST["pass"])){
         
         $res = $db->prepare($insertNewUser);
         $quary = $res->execute(array(":username" => $userName, ":password" => $passHash, ":created_at" => $time));
-        
+        $userid = intval($db->lastInsertId()); 
         $db->commit();
         
         if (!$quary){
             $response['errors']["query"]=$db->errorInfo();
         }else{
             session_start();
+            $_SESSION['userid'] = $userid;
             $_SESSION['siteUsername'] = $userName;
         }
         

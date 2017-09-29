@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST["topicId"])){
     include './connect.php';
+    session_start();
     
     $topicId = $_POST["topicId"];
     $commentText = $_POST["textRaw"];
@@ -8,8 +9,8 @@ if(isset($_POST["topicId"])){
     $commentTypeId = 23;
     
     try{
-        $insertIntoNode = "INSERT INTO node (contenttypeid, publishdate, title, parentid, lastcontent) "
-                . "VALUES(:typeId, :time, '', :parentId, :lastTime);";
+        $insertIntoNode = "INSERT INTO node (contenttypeid, publishdate, title, parentid, lastcontent, userid) "
+                . "VALUES(:typeId, :time, '', :parentId, :lastTime, :userid);";
         $updateNode = "UPDATE `node` SET lastcontentid = :lastNodeId "
                     . "WHERE nodeid = :nodeId;";
         $insertIntoText = "INSERT INTO `text` (nodeid, rawtext) VALUES(:nodeId, :commentText);";
@@ -21,7 +22,8 @@ if(isset($_POST["topicId"])){
                                     ":typeId" => $commentTypeId,
                                     ":time" => $time,
                                     ":parentId" => $topicId,
-                                    ":lastTime" => $time));
+                                    ":lastTime" => $time,
+                                    ":userid" => $_SESSION["userid"]));
         $lastInsertedIndex = intval($db->lastInsertId());       
         $res = $db->prepare($updateNode);
         $quary = $res->execute(array(":lastNodeId" => $lastInsertedIndex,":nodeId" => $lastInsertedIndex));
@@ -36,8 +38,9 @@ if(isset($_POST["topicId"])){
             print_r($dbh->errorInfo());
         }else{
             echo "<div class='comment'>";
-                echo "<h6>Posted on ".Date("F jS, Y, g:ia",$time)."</h6>";
+                echo "<h6>Posted on ".Date("F jS, Y, g:ia",$time)." by: ".$_SESSION["siteUsername"]."</h6>";
                 echo "<div>".$commentText."</div>";
+                echo "<span class='editPost'>Edit</span>";
             echo "</div>";
         }
     }catch (PDOException $e) {

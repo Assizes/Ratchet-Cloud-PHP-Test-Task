@@ -7,7 +7,7 @@ if(isset($_POST["userName"]) && isset($_POST["pass"])){
     $pass = $_POST["pass"];
     $response = [];
     
-    $insertNewUser = "SELECT created_at, password FROM users WHERE username = :username";
+    $insertNewUser = "SELECT id, created_at, password FROM users WHERE username = :username";
     
     $res = $db->prepare($insertNewUser);
     $quary = $res->execute(array(":username" => $userName));
@@ -17,6 +17,7 @@ if(isset($_POST["userName"]) && isset($_POST["pass"])){
         $cookedPass = $user["created_at"].$pass.$pepper;
         if(password_verify($cookedPass, $user["password"])){
             session_start();
+            $_SESSION['userid'] = $user["id"];
             $_SESSION['siteUsername'] = $userName;
             //header("location: index.php");
         }else{
