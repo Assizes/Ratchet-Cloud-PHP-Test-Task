@@ -25,4 +25,4 @@ To setup redirection on index.php, in .htaccess add:
 
 Then modify gulpfile.js to change output path.
 
-Finaly, run "gulp" command in cmd line while in local repository.
+Finally, run "gulp" command in cmd line while in local repository.
