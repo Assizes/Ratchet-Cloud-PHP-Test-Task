@@ -1,4 +1,4 @@
-var sitePath = 'http://192.168.0.12/mvc-fork/';
+var sitePath = 'http://192.168.0.12/Ratchet-Cloud-PHP-Test-Task/';
 
 $( document ).ready(function(){
        
