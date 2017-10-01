@@ -1,13 +1,10 @@
 {
-  "name": "MyProject",
+  "name": "ForumProject",
   "version": "1.0.0",
   "dependencies": {
     "gulp": "*",
     "gulp-util": "*",
     "gulp-rename": "*",
-    "map-stream": "*",
-    "gulp-livereload": "*",
-    "gulp-concat": "*",
     "gulp-uglify": "*",
     "gulp-watch": "*",
     "gulp-ruby-sass": "*"

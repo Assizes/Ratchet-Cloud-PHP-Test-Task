@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 28 2017 г., 22:56
+-- Время создания: Окт 02 2017 г., 00:03
 -- Версия сервера: 5.6.17
 -- Версия PHP: 5.5.12
 
@@ -54,45 +54,50 @@ CREATE TABLE IF NOT EXISTS `node` (
   `parentid` int(11) NOT NULL,
   `lastcontent` int(11) NOT NULL DEFAULT '0',
   `lastcontentid` int(11) NOT NULL DEFAULT '0',
+  `userid` int(11) NOT NULL,
   PRIMARY KEY (`nodeid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=130 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=134 ;
 
 --
 -- Дамп данных таблицы `node`
 --
 
-INSERT INTO `node` (`nodeid`, `contenttypeid`, `publishdate`, `title`, `parentid`, `lastcontent`, `lastcontentid`) VALUES
-(82, 22, 1505341382, 'Chapter 1 The Boy Who Lived', 81, 1505341423, 86),
-(83, 23, 1505341394, '', 82, 1505341394, 83),
-(84, 23, 1505341404, '', 82, 1505341404, 84),
-(85, 23, 1505341414, '', 82, 1505341414, 85),
-(86, 23, 1505341423, '', 82, 1505341423, 86),
-(87, 22, 1505341463, 'Chapter 2 The Vanishing Glass', 81, 1505341463, 87),
-(88, 22, 1505341493, 'Chapter 3 Letters from No One', 81, 1505341514, 90),
-(89, 23, 1505341505, '', 88, 1505341505, 89),
-(90, 23, 1505341514, '', 88, 1505341514, 90),
-(91, 22, 1505341543, 'Chapter 4 The Keeper of the Keys', 81, 1505341543, 91),
-(92, 22, 1505341576, 'Chapter 5 Diagon Alley', 81, 1505341588, 93),
-(93, 23, 1505341588, '', 92, 1505341588, 93),
-(111, 23, 1505858466, '', 82, 1505858466, 0),
-(112, 23, 1505858669, '', 82, 1505858669, 0),
-(113, 23, 1505859015, '', 82, 1505859015, 0),
-(114, 23, 1505859177, '', 82, 1505859177, 114),
-(115, 23, 1505859226, '', 87, 1505859226, 115),
-(116, 23, 1505859239, '', 87, 1505859239, 116),
-(117, 23, 1505859272, '', 87, 1505859272, 117),
-(118, 23, 1505860498, '', 82, 1505860498, 118),
-(119, 23, 1505860525, '', 82, 1505860525, 119),
-(120, 23, 1505860541, '', 82, 1505860541, 120),
-(121, 23, 1505860633, '', 82, 1505860633, 121),
-(122, 23, 1505860969, '', 82, 1505860969, 122),
-(123, 23, 1505861138, '', 82, 1505861138, 123),
-(124, 23, 1505861217, '', 82, 1505861217, 124),
-(125, 23, 1505861819, '', 82, 1505861819, 125),
-(126, 23, 1505881994, '', 82, 1505881994, 126),
-(127, 23, 1505884363, '', 82, 1505884363, 127),
-(128, 23, 1505884369, '', 82, 1505884369, 128),
-(129, 23, 1506151015, '', 82, 1506151015, 129);
+INSERT INTO `node` (`nodeid`, `contenttypeid`, `publishdate`, `title`, `parentid`, `lastcontent`, `lastcontentid`, `userid`) VALUES
+(82, 22, 1505341382, 'Chapter 1 The Boy Who Lived', 81, 1505341423, 86, 29),
+(83, 23, 1505341394, '', 82, 1505341394, 83, 29),
+(84, 23, 1505341404, '', 82, 1505341404, 84, 30),
+(85, 23, 1505341414, '', 82, 1505341414, 85, 29),
+(86, 23, 1505341423, '', 82, 1505341423, 86, 29),
+(87, 22, 1505341463, 'Chapter 2 The Vanishing Glass', 81, 1505341463, 87, 29),
+(88, 22, 1505341493, 'Chapter 3 Letters from No One', 81, 1505341514, 90, 30),
+(89, 23, 1505341505, '', 88, 1505341505, 89, 29),
+(90, 23, 1505341514, '', 88, 1505341514, 90, 30),
+(91, 22, 1505341543, 'Chapter 4 The Keeper of the Keys', 81, 1505341543, 91, 30),
+(92, 22, 1505341576, 'Chapter 5 Diagon Alley', 81, 1505341588, 93, 30),
+(93, 23, 1505341588, '', 92, 1505341588, 93, 29),
+(111, 23, 1505858466, '', 82, 1505858466, 0, 30),
+(112, 23, 1505858669, '', 82, 1505858669, 0, 30),
+(113, 23, 1505859015, '', 82, 1505859015, 0, 29),
+(114, 23, 1505859177, '', 82, 1505859177, 114, 29),
+(115, 23, 1505859226, '', 87, 1505859226, 115, 29),
+(116, 23, 1505859239, '', 87, 1505859239, 116, 30),
+(117, 23, 1505859272, '', 87, 1505859272, 117, 29),
+(118, 23, 1505860498, '', 82, 1505860498, 118, 29),
+(119, 23, 1505860525, '', 82, 1505860525, 119, 30),
+(120, 23, 1505860541, '', 82, 1505860541, 120, 30),
+(121, 23, 1505860633, '', 82, 1505860633, 121, 30),
+(122, 23, 1505860969, '', 82, 1505860969, 122, 29),
+(123, 23, 1505861138, '', 82, 1505861138, 123, 30),
+(124, 23, 1505861217, '', 82, 1505861217, 124, 0),
+(125, 23, 1505861819, '', 82, 1505861819, 125, 0),
+(126, 23, 1505881994, '', 82, 1505881994, 126, 0),
+(127, 23, 1505884363, '', 82, 1505884363, 127, 0),
+(128, 23, 1505884369, '', 82, 1505884369, 128, 0),
+(129, 23, 1506151015, '', 82, 1506151015, 129, 0),
+(130, 23, 1506706702, '', 82, 1506706702, 130, 29),
+(131, 23, 1506729966, '', 82, 1506729966, 131, 29),
+(132, 23, 1506732191, '', 82, 1506732191, 132, 29),
+(133, 23, 1506891434, '', 82, 1506891434, 133, 32);
 
 -- --------------------------------------------------------
 
@@ -111,6 +116,7 @@ CREATE TABLE IF NOT EXISTS `text` (
 --
 
 INSERT INTO `text` (`nodeid`, `rawtext`) VALUES
+(0, 'testlogin'),
 (82, 'Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much. They were the last people you''d expect to be involved in anything strange or mysterious, because they just didn''t hold with such nonsense.'),
 (83, 'Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere.'),
 (84, 'The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn''t think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley''s sister, but they hadn''t met for several years; in fact, Mrs. Dursley pretended she didn''t have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn''t want Dudley mixing with a child like that.'),
@@ -141,7 +147,11 @@ INSERT INTO `text` (`nodeid`, `rawtext`) VALUES
 (126, 'dfgsdgsg'),
 (127, 'sghfsgh'),
 (128, 'qewrqewr'),
-(129, 'fxgnfgxhd');
+(129, 'fxgnfgxhd'),
+(130, 'testlogin'),
+(131, 'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww'),
+(132, 'ww www wwwwwwwww wwwwww wwwwwwwwwww wwwww www wwwww wwwwww wwwwwwwww wwwwwwasdfsadfsad wwwww wwwasdfsadfsadf ww asdfsadfsdaf adsfsadfasdf sadfsafsadf www wwwwwww wwwwwwww wwwwwww wwwwww wwwwwwww af asdfsadf  sfdsf adsf dsa d sa'),
+(133, 'Test4');
 
 -- --------------------------------------------------------
 
@@ -156,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -164,7 +174,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
 (29, 'Test', '$2y$10$qC3TiWMjE1MB8PXzY9lzWuHXtn0ENiuT0z01GxSe3jNmq3uECMpJi', '1506631088'),
-(30, 'Test2', '$2y$10$QGbKtgChoGDWLLFRuSvwl.THDxP54sfQQR54lnOV2Fvxw8bQlKc12', '1506631635');
+(30, 'Test2', '$2y$10$QGbKtgChoGDWLLFRuSvwl.THDxP54sfQQR54lnOV2Fvxw8bQlKc12', '1506631635'),
+(31, 'Test3', '$2y$10$itiyFpVFgZngxln/t1PA7OuzVCYkI/NraJ244nPWlxbSdRXzOYAq6', '1506888209'),
+(32, 'Test4', '$2y$10$bRZDTB7ueYqcTgIbc724y.OTaGcRwO.8gze0dPP3q7ufm/VVML5lW', '1506891143');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -56,11 +56,20 @@
         color: #00f;
         cursor: pointer;
     }
+    .editPostText{
+        width: 100%;
+        background-color: cornsilk;
+        overflow: hidden;
+        font-size: 16px;
+    }
     .editPost:hover{
         text-decoration: underline;
     }
     .comment{
         background-color: bisque;
+        .nodeText{
+            word-wrap: break-word;
+        }
     }
     .post{
         background-color: aliceblue;

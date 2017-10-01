@@ -1,4 +1,7 @@
+var sitePath = 'http://192.168.0.12/mvc-fork/';
+
 $( document ).ready(function(){
+       
     $("#signIn").on("click", function(){
        $("#loginModal").fadeIn(400);
        $(".overlay").fadeIn(400);
@@ -23,7 +26,7 @@ $( document ).ready(function(){
         var passConf = form.find("#passConf").val();
         var url = form.attr("action");
         if(userName && pass && (pass === passConf)){
-            var register = $.post(url, {userName: userName, pass: pass});
+            var register = $.post(sitePath, {registerUser: "registerUser",userName: userName, pass: pass});
             register.done(function(data) {
                var response = JSON.parse(data);
                if(response["errors"]){
@@ -50,7 +53,7 @@ $( document ).ready(function(){
         var userName = form.find("#logUserName").val();
         var pass = form.find("#logPass").val();
         var url = form.attr("action");
-        var login = $.post(url, {userName: userName, pass: pass});
+        var login = $.post(sitePath, {logIn: 'logIn',userName: userName, pass: pass});
         login.done(function(data) {
             var response = JSON.parse(data);
             if(response["errors"]){

@@ -11,15 +11,30 @@ gulp.task('styles', function() {
         .pipe(gulp.dest(path+'/css/'));
 });
 
+/*
 gulp.task('html', function() {
     return gulp.src('./*.html')
         .pipe(gulp.dest(path+'/'));
 });
-
+*/
 gulp.task('php', function() {
     return gulp.src('./*.php')
-        
         .pipe(gulp.dest(path+'/'));
+});
+
+gulp.task('controllers', function() {
+    return gulp.src('./controllers/*.php')
+        .pipe(gulp.dest(path+'/controllers/'));
+});
+
+gulp.task('models', function() {
+    return gulp.src('./models/*.php')
+        .pipe(gulp.dest(path+'/models/'));
+});
+
+gulp.task('views', function() {
+    return gulp.src('./views/*.php')
+        .pipe(gulp.dest(path+'/views/'));
 });
 
 gulp.task('js', function() {
@@ -29,4 +44,4 @@ gulp.task('js', function() {
 });
 
 //Watch task
-gulp.task('default',['styles','html','php','js']);
+gulp.task('default',['styles','php','controllers','models','views','js']);

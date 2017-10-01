@@ -1,17 +1,25 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "php_test";
 
-// Create connection
-$db = new PDO("mysql:host=".$servername.";dbname=".$database,$username,$password);
-$conn = mysqli_connect($servername, $username, $password, $database);
+class DB{
+    
+    private static $instance = NULL;
+    
+    function __construct(){}
+    
+    public static function getInstance(){
+        if(!isset(self::$instance)){
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "php_test";
+            
+            self::$instance = new PDO("mysql:host=".$servername.";dbname=".$database,$username,$password);
 
-// Check connection
-if (!$db) {
-    die("Connection failed: " . $db->errorInfo());
+            // Check connection
+            if (!self::$instance) {
+                die("Connection failed: " . self::$instance->errorInfo());
+            }
+        }
+        return self::$instance;
+    }
 }
-// echo "Connected successfully <br>";
-
-?>
