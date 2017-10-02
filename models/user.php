@@ -110,7 +110,6 @@ class UserModel{
         global $sitePath;
         $_SESSION = array();
         session_destroy();
-        var_dump($_SERVER['REQUEST_URI']);
         header("location: ".str_replace('/?logOff=logOff',"",$_SERVER['REQUEST_URI']));
         exit;
     }
