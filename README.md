@@ -26,3 +26,6 @@ To setup redirection on index.php, in .htaccess add:
 Then modify gulpfile.js to change output path.
 
 Finally, run "gulp" command in cmd line while in local repository.
+
+
+Live demo: http://www.dynkosergei.co.nf/Ratchet-Cloud-PHP-Test-Task/
