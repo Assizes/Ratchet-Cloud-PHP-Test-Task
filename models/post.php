@@ -1,15 +1,15 @@
 <?php
 class PostModel{
-
+    
     public function __constructor(){
         
     }
         
     public static function showPost(){
         if(isset($_GET["id"])){
-            
+
             $db = DB::getInstance();
-            
+
             $topicId = $_GET["id"];
             $selectPostAndComments = "SELECT node.nodeid, node.title, node.publishdate, text.rawtext, users.username, node.userid, "
                 . "(SELECT count(nodeid) FROM node WHERE parentid = :id) AS postcount "
@@ -20,7 +20,7 @@ class PostModel{
             $params = array(":id" => $topicId);
             $res = $db->prepare($selectPostAndComments);
             $quary = $res->execute($params);
-           
+
             return $res;
         }
     }
@@ -39,9 +39,9 @@ class PostModel{
             $insertIntoText = "INSERT INTO `text` (nodeid, rawtext) VALUES(:nodeId, :commentText);";
 
             $db = DB::getInstance();
-            
+
             $db->begintransaction();
-        
+
             $res = $db->prepare($insertIntoNode);
             $quary = $res->execute(array(
                                     ":typeId" => $commentTypeId,
@@ -52,12 +52,12 @@ class PostModel{
             $lastInsertedIndex = intval($db->lastInsertId());       
             $res = $db->prepare($updateNode);
             $quary = $res->execute(array(":lastNodeId" => $lastInsertedIndex,":nodeId" => $lastInsertedIndex));
-        
+
             $res = $db->prepare($insertIntoText);
             $quary = $res->execute(array(":nodeId" => $lastInsertedIndex, ":commentText" => $commentText));
-        
+
             $db->commit();
-        
+
             if (!$quary){
                 echo "\nPDO::errorInfo():\n";
                 print_r($db->errorInfo());
@@ -74,4 +74,38 @@ class PostModel{
             die($e->getMessage());
         }
     }
+     public static function editPost(){
+        $postId = $_POST["postId"];
+        $postText = $_POST["textRaw"];
+        $json = [];
+    
+        try{
+            $updateNodeText = "UPDATE `text` SET rawtext = :rawtext "
+                    . "WHERE nodeid = :nodeId;";
+            
+            $db = DB::getInstance();
+            
+            $db->begintransaction();
+            
+            $res = $db->prepare($updateNodeText);
+            $quary = $res->execute(array(":rawtext" => $postText,":nodeId" => $postId));
+            
+            $db->commit();
+            
+            if (!$quary){
+                $json['status'] = $db->errorInfo();
+                echo json_encode($json);
+                exit;
+                
+            }else{
+                $json['status'] = "success";
+                echo json_encode($json);
+                exit;
+            }
+            
+        }catch (PDOException $e) {
+            $db->rollBack();
+            die($e->getMessage());
+        }
+     }
 }

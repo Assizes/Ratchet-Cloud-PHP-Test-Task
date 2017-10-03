@@ -24,13 +24,14 @@ if(file_exists($modelPath)){
     require_once ($modelPath);
 }else{
     echo $modelPath.' do not exist';
-    $modelPath = $modelsPath.$modelName.'.php';
+    $modelPath = $modelsPath.'posts'.'.php';
 }
 
 if(file_exists($controllerPath)){
     require_once ($controllerPath);
 }else{
     echo $controllerPath.' do not exist';
+    $controllerPath = $controllersPath.'posts'.'.php';
 }
 
 $controllerName = $controllerName."Controller";

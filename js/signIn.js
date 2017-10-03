@@ -37,9 +37,7 @@ $( document ).ready(function(){
                else{
                     $(".alert").remove();
                     $("#loginModal").prepend("<div class='alert alert-success'>You registered successfully</div>");
-                    $("#signWrap").hide();
-                    $(".userName").text(userName);
-                    $("#signIn").hide();
+                    location.reload();
                }
             });
         }

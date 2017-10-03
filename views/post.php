@@ -30,8 +30,10 @@ function renderPost($raw){
     
     echo "<input name='nodeid' type='hidden' value='".$raw["nodeid"]."'>";
     echo "<h6>Posted on ".Date("F jS, Y, g:ia",$raw["publishdate"])." by: ".$raw["username"]."</h6>";
+    echo "<div class='replaceWrap'>";
     echo "<div class='nodeText'>".$raw["rawtext"]."</div>";
     if($user->getId() === $raw["userid"]){
         echo "<span class='editPost'>Edit</span>";
     }
+    echo "</div>";
 }

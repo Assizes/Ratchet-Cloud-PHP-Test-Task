@@ -7,4 +7,7 @@ class PostController{
     public function submit(){
         PostModel::submitPost();
     }
+    public function edit(){
+        PostModel::editPost();
+    }
 }
