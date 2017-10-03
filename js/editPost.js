@@ -79,7 +79,7 @@ function buildComment(text){
     var wrap = $("<div class='replaceWrap'></div>");
     var nodeText = $("<div class='nodeText'></div>");
     var editButton = $("<span class='editPost'>Edit</span>");
-    nodeText.text(text);
+    nodeText.html(text.replace(/\r?\n/g,'<br/>'));
     wrap.append(nodeText);
     wrap.append(editButton);
     return wrap;
