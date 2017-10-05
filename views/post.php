@@ -33,7 +33,10 @@ function renderPost($raw){
     echo "<div class='replaceWrap'>";
     echo "<div class='nodeText'>".nl2br($raw["rawtext"])."</div>";
     if($user->getId() === $raw["userid"]){
+        echo "<div class='commentButtonsWrap'>";
+        echo "<span class='deletePost'>Delete</span>";
         echo "<span class='editPost'>Edit</span>";
+        echo "</div>";
     }
     echo "</div>";
 }

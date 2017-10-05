@@ -30,6 +30,7 @@ class PostModel{
         $commentText = $_POST["textRaw"];
         $time = time();
         $commentTypeId = 23;
+        $db = DB::getInstance();
     
         try{
             $insertIntoNode = "INSERT INTO node (contenttypeid, publishdate, title, parentid, lastcontent, userid) "
@@ -37,8 +38,6 @@ class PostModel{
             $updateNode = "UPDATE `node` SET lastcontentid = :lastNodeId "
                     . "WHERE nodeid = :nodeId;";
             $insertIntoText = "INSERT INTO `text` (nodeid, rawtext) VALUES(:nodeId, :commentText);";
-
-            $db = DB::getInstance();
 
             $db->begintransaction();
 
@@ -74,17 +73,15 @@ class PostModel{
             die($e->getMessage());
         }
     }
-     public static function editPost(){
-        $postId = $_POST["postId"];
-        $postText = $_POST["textRaw"];
-        $json = [];
+    public static function editPost(){
+       $postId = $_POST["postId"];
+       $postText = $_POST["textRaw"];
+       $db = DB::getInstance();
     
         try{
             $updateNodeText = "UPDATE `text` SET rawtext = :rawtext "
                     . "WHERE nodeid = :nodeId;";
-            
-            $db = DB::getInstance();
-            
+
             $db->begintransaction();
             
             $res = $db->prepare($updateNodeText);
@@ -107,5 +104,37 @@ class PostModel{
             $db->rollBack();
             die($e->getMessage());
         }
-     }
+    }
+    
+    public static function deletePost(){
+        $postId = $_POST["postId"];
+        
+        $db = DB::getInstance();
+        
+        try{
+            $deleteNode = "DELETE node, text FROM node INNER JOIN text WHERE node.nodeid = :nodeId AND node.nodeid = text.nodeid";
+            
+            $db->begintransaction();
+            
+            $res = $db->prepare($deleteNode);
+            $quary = $res->execute(array(":nodeId" => $postId));
+            
+            $db->commit();
+            
+            if (!$quary){
+                $json['status'] = $db->errorInfo();
+                echo json_encode($json);
+                exit;
+                
+            }else{
+                $json['status'] = "success";
+                echo json_encode($json);
+                exit;
+            }
+            
+        }catch (PDOException $e) {
+            $db->rollBack();
+            die($e->getMessage());
+        }
+    }
 }

@@ -10,4 +10,7 @@ class PostController{
     public function edit(){
         PostModel::editPost();
     }
+    public function delete(){
+        PostModel::deletePost();
+    }
 }

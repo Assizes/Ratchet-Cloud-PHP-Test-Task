@@ -65,10 +65,10 @@ function submitChanges(f, originalText){
                 $(".alert").delay(2000).hide(1000);
                 $(form).off();
                 $(form).find("textarea").off();
-                var editbutton = node.find(".editPost");
-                editbutton.on("click",edit);
+                //var editbutton = node.find(".editPost");
+                //editbutton.on("click",edit);
             }else{
-                node.closest(".comment").prepend("<div class='alert alert-success'>"+response['status']+"</div>");
+                node.closest(".comment").prepend("<div class='alert alert-danger'>"+response['status']+"</div>");
                 $(".alert").delay(2000).hide(1000);
             }
         });
@@ -78,9 +78,15 @@ function submitChanges(f, originalText){
 function buildComment(text){
     var wrap = $("<div class='replaceWrap'></div>");
     var nodeText = $("<div class='nodeText'></div>");
+    var buttonsWrap = $("<div class='commentButtonsWrap'></div>");
     var editButton = $("<span class='editPost'>Edit</span>");
+    var deleteButton = $("<span class='deletePost'>Delete</span>");
     nodeText.html(text.replace(/\r?\n/g,'<br/>'));
     wrap.append(nodeText);
-    wrap.append(editButton);
+    buttonsWrap.append(deleteButton);
+    buttonsWrap.append(editButton);
+    wrap.append(buttonsWrap);
+    editButton.on("click",edit);
+    deleteButton.on("click",deletePost);
     return wrap;
 }

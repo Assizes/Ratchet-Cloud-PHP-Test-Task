@@ -21,4 +21,7 @@
             <?php } ?>
         </tbody>
     </table>
+    <?php if($user->getId() !== ""){
+        //include_once("./views/postForm.php");
+    } ?>
 </div>
