@@ -62,9 +62,15 @@ class PostModel{
                 print_r($db->errorInfo());
             }else{
                 echo "<div class='comment'>";
+                    echo "<input name='nodeid' type='hidden' value='".$lastInsertedIndex."'>";
                     echo "<h6>Posted on ".Date("F jS, Y, g:ia",$time)." by: ".$_SESSION["siteUsername"]."</h6>";
-                    echo "<div>".$commentText."</div>";
-                    echo "<span class='editPost'>Edit</span>";
+                    echo "<div class='replaceWrap'>";
+                        echo "<div class='nodeText'>".nl2br($commentText)."</div>";
+                        echo "<div class='commentButtonsWrap'>";
+                            echo "<span class='deletePost'>Delete</span>";
+                            echo "<span class='editPost'>Edit</span>";
+                        echo "</div>";
+                    echo "</div>";
                 echo "</div>";
                 exit;
             }

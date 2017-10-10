@@ -1,4 +1,4 @@
-<?php global $sitePath; ?>
+<?php global $sitePath, $user; ?>
 <div class="topics-header">
     <h1>TOPIC LIST</h1>
 </div>
@@ -22,6 +22,6 @@
         </tbody>
     </table>
     <?php if($user->getId() !== ""){
-        //include_once("./views/postForm.php");
+        include_once("./views/postForm.php");
     } ?>
 </div>
