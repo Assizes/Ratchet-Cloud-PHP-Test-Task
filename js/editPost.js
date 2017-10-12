@@ -4,7 +4,7 @@ $( document ).ready(function(){
 function edit(event){
     var post = $(event.target).closest(".comment");
     var nodeId = post.find("input[name='nodeid']").val();
-    var nodeText = post.find(".nodeText").text();
+    var nodeText = post.find(".nodeText").html().replace(/<br\s*[\/]?>/gi, "\r");
     var form = buildEditForm(nodeText,nodeId);
 
     post.find(".replaceWrap").replaceWith(form);
@@ -36,7 +36,7 @@ function buildEditForm(nodeText,id){
     var nodeId = $("<input class='nodeId' type='hidden' value='"+id+"'>");
     var textArea = $("<textarea class='editPostText'></textarea>");
     var submitButton = $("<button class='submitChanges'>Submit</button>");
-    textArea.text(nodeText);
+    textArea.html(nodeText);
     form.append(nodeId);
     form.append(textArea);
     form.append(submitButton);
@@ -81,7 +81,7 @@ function buildComment(text){
     var buttonsWrap = $("<div class='commentButtonsWrap'></div>");
     var editButton = $("<span class='editPost'>Edit</span>");
     var deleteButton = $("<span class='deletePost'>Delete</span>");
-    nodeText.html(text.replace(/\r?\n/g,'<br/>'));
+    nodeText.html(text.replace(/\r?\n/g,'<br>'));
     wrap.append(nodeText);
     buttonsWrap.append(deleteButton);
     buttonsWrap.append(editButton);
